@@ -1,0 +1,153 @@
+/* --- GLOBAL RESET & THEME --- */
+* { box-sizing: border-box; }
+
+body { 
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #121212; 
+    color: #e0e0e0; 
+    margin: 0; 
+    height: 100vh;
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1, h2, h3 { margin: 0; font-weight: 600; }
+
+/* --- PAGE 1: SETUP VIEW --- */
+#setup-view {
+    display: flex; /* Visible by default */
+    flex-direction: column;
+    gap: 20px;
+    background: #1e1e1e;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+    border: 1px solid #333;
+}
+
+.brand-title { color: #00e676; margin-bottom: 5px; }
+.subtitle { color: #888; margin-bottom: 10px; }
+
+.input-group { display: flex; flex-direction: column; text-align: left; gap: 8px; }
+label { font-size: 0.9rem; color: #aaa; letter-spacing: 1px; text-transform: uppercase; }
+
+input {
+    background: #2d2d2d;
+    border: 2px solid #444;
+    color: white;
+    padding: 15px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+input:focus { border-color: #00e676; }
+
+/* Buttons */
+button.primary-btn {
+    background: #00e676;
+    color: #000;
+    padding: 15px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 10px;
+    transition: transform 0.1s, background 0.2s;
+}
+button.primary-btn:hover { background: #00c853; transform: scale(1.02); }
+button.primary-btn:disabled { background: #444; color: #888; cursor: not-allowed; transform: none; }
+
+/* --- PAGE 2: MONITOR VIEW --- */
+#monitor-view {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding-top: 20px;
+}
+
+/* Header Info Bar */
+#session-info {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 20px;
+    align-items: center;
+    background: #1e1e1e;
+    padding: 10px 30px;
+    border-radius: 50px;
+    border: 1px solid #333;
+}
+
+.info-item { text-align: center; }
+.info-label { font-size: 0.8rem; color: #888; text-transform: uppercase; }
+.info-value { font-size: 1.5rem; font-weight: bold; color: white; }
+#timer-display { color: #00e676; font-family: 'Courier New', monospace; }
+
+button.stop-btn {
+    background: #cf6679; color: black; border: none;
+    padding: 8px 20px; border-radius: 20px;
+    cursor: pointer; font-weight: bold;
+}
+button.stop-btn:hover { background: #b00020; color: white; }
+
+/* Camera Container */
+#cam-container { 
+    position: relative; 
+    width: 640px; height: 480px; 
+    border: 4px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+    background: #000;
+    overflow: hidden;
+}
+
+#webcam, #canvas { 
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; 
+    object-fit: cover;
+    transform: scaleX(-1); /* Mirror Effect */
+}
+
+/* --- PUNISHMENT OVERLAY --- */
+#overlay {
+    display: none; 
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
+    background: rgba(0,0,0,0.98); 
+    z-index: 9999; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#overlay h1 {
+    color: red; font-size: 4rem; margin: 0 0 20px 0;
+    text-transform: uppercase; text-shadow: 0 0 20px red;
+    text-align: center;
+}
+
+#guilt-video { 
+    position: static !important; 
+    width: 80%; max-width: 800px; max-height: 50vh; 
+    border: 4px solid red; box-shadow: 0 0 60px red;
+    margin-bottom: 30px; display: block;
+}
+
+#overlay button {
+    padding: 20px 50px; font-size: 1.5rem; 
+    background: red; color: white; border: 2px solid white; 
+    cursor: pointer; font-weight: bold; text-transform: uppercase;
+}
+
+#load-status { font-size: 0.8rem; color: #666; margin-top: 10px; }
+.status-bar { margin-top: 15px; color: #666; font-size: 0.9rem; }
+.grace-period { color: #ffeb3b !important; font-weight: bold; }
